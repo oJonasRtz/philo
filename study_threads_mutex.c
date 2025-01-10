@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   study_threads_mutex.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:24:55 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/10 11:09:59 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:02:06 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,6 @@ typedef struct s_struct
 	pthread_mutex_t	mutex;
 	int				x;
 }	t_struct;
-
-int	ft_atoi(char *str)
-{
-	int	i;
-	int	num;
-	int	sign;
-
-	sign = 1;
-	num = 0;
-	i = 0;
-	if (str[i] == '-')
-	{
-		sign = -sign;
-		i++;
-	}
-	while (str[i])
-		num = num * 10 + (str[i++] - '0');
-	return (num * sign);
-}
 
 void	*rotine(void *a)
 {
