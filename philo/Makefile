@@ -6,14 +6,14 @@
 #    By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 10:43:40 by jopereir          #+#    #+#              #
-#    Updated: 2025/01/08 12:06:16 by jopereir         ###   ########.fr        #
+#    Updated: 2025/01/13 11:46:30 by jopereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRC_DIR = src
-SRCS = 
+SRCS = init.c events.c philosophers.c
 	
 SRC = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJ = $(SRC:.c=.o)
