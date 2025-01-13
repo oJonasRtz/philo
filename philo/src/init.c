@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:03 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/13 13:14:38 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:27:53 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static long	ft_atoi(char *str)
 	int		i;
 
 	i = 0;
+	num = 0;
 	while (str[i] && is_space(str[i]))
 		i++;
 	while (str[i])
@@ -40,9 +41,12 @@ void	philo_init(int argc, char **argv, t_data *data)
 	data->philo = malloc(sizeof(t_philo) * data->philo_size);
 	if (!data->philo)
 		return ;
+	pthread_mutex_init(&data->mutex, NULL);
 	i = 0;
 	while (i < data->philo_size)
 	{
+		data->philo[i].mutex = &data->mutex;
+		data->philo[i].forks = &data->forks;
 		data->philo[i].my_forks = 0;
 		data->philo[i].id = i;
 		data->philo[i].time_to_die = ft_atoi(argv[2]);

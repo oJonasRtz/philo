@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:17 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/13 13:15:55 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:19:20 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	set_null(t_data *data)
 void	create(int argc, char **argv)
 {
 	t_data	data;
-	int		i;
 
 	set_null(&data);
 	philo_init(argc, argv, &data);
@@ -30,15 +29,6 @@ void	create(int argc, char **argv)
 		return (destroy (&data));
 	printf("Quantidade de philos: %ld\n", data.philo_size);
 	printf("garfos %ld\n", data.forks);
-	pthread_mutex_init(&data.mutex, NULL);
-	i = 0;
-	while (i < data.philo_size)
-	{
-		data.philo[i].mutex = &data.mutex;
-		data.philo[i].forks = &data.forks;
-		i++;
-	}
-	printf("create\n");
 	execute(&data);
 	destroy(&data);
 	return ;
