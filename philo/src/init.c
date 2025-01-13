@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:03 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/13 13:27:53 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:27:49 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,41 @@ static long	ft_atoi(char *str)
 	return (num);
 }
 
+static void	set_philo(int argc, char **argv, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo_size)
+	{
+		data->philo[i].left_fork = &data->forks[i % data->philo_size];
+		data->philo[i].right_fork = &data->forks[(i + 1) % data->philo_size];
+		data->philo[i].philo_size = 0;
+		data->philo[i].meals_eaten = 0;
+		data->philo[i].timestamp = 0;
+		data->philo[i].index = i;
+		data->philo[i].id = i + 1;
+		data->philo[i].time_to_die = ft_atoi(argv[2]);
+		data->philo[i].time_to_eat = ft_atoi(argv[3]);
+		data->philo[i].time_to_sleep = ft_atoi(argv[4]);
+		if (argc == 6)
+			data->philo[i].meals_to_eat = ft_atoi(argv[5]);
+		else
+			data->philo[i++].meals_to_eat = -1;
+	}
+}
+
 void	philo_init(int argc, char **argv, t_data *data)
 {
 	long	i;
 
 	data->philo_size = ft_atoi(argv[1]);
-	data->forks = data->philo_size;
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_size);
 	data->philo = malloc(sizeof(t_philo) * data->philo_size);
-	if (!data->philo)
+	if (!data->philo || !data->forks)
 		return ;
-	pthread_mutex_init(&data->mutex, NULL);
 	i = 0;
 	while (i < data->philo_size)
-	{
-		data->philo[i].mutex = &data->mutex;
-		data->philo[i].forks = &data->forks;
-		data->philo[i].my_forks = 0;
-		data->philo[i].id = i;
-		data->philo[i].time_to_die = ft_atoi(argv[2]);
-		data->philo[i].time_to_eat = ft_atoi(argv[3]);
-		data->philo[i].time_to_sleep = ft_atoi(argv[4]);
-		if (argc == 6)
-			data->philo[i].times_to_eat = ft_atoi(argv[5]);
-		else
-			data->philo[i].times_to_eat = -1;
-		i++;
-	}
+		pthread_mutex_init(&data->forks[i++], NULL);
+	set_philo(argc, argv, data);
 }

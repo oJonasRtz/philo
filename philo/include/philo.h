@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/13 13:15:57 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:30:19 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,26 @@
 
 typedef struct s_philo
 {
-	pthread_mutex_t	*mutex;
-	long			*forks;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 
+	int				index;
 	int				id;
-	int				my_forks;
+	int				philo_size;
 	pthread_t		t;
 
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
-
-	long			times_to_eat;
+	long			meals_to_eat;
+	long			meals_eaten;
+	long			timestamp;
+	struct timeval	time;
 }	t_philo;
 
 typedef struct s_data
 {
-	pthread_mutex_t	mutex;
-	long			forks;
+	pthread_mutex_t	*forks;
 
 	t_philo			*philo;
 	long			philo_size;
