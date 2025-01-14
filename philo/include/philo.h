@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/14 11:37:55 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:33:11 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	long			time_to_sleep;
 	long			meals_to_eat;
 	long			meals_eaten;
+	long			last_meal;
 
 	long			timestamp;
 	long			current_time;
@@ -65,10 +66,11 @@ void	philo_init(int argc, char **argv, t_data *data);
 
 //	philosophers.c
 void	*rotine(void *arg);
-long	get_time_ms(t_philo *philo);
-
+long	get_time(t_philo *philo);
+int		died(t_philo *philo);
 //	utils.c
 void	get_forks_and_eat(t_philo *philo);
 void	case_one_philo(t_philo *philo);
+int		time_to_do(long activity, long current_time, long time_to_die);
 
 #endif

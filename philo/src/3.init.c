@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:03 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/14 11:41:54 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:18:24 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	set_philo(int argc, char **argv, t_data *data)
 	i = 0;
 	while (i < data->philo_size)
 	{
+		data->philo[i].last_meal = 0;
 		data->philo[i].died_flag = &data->died_flag;
 		data->philo[i].died = &data->died_mutex;
 		data->philo[i].left_fork = &data->forks[i % data->philo_size];
