@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   2.events.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:17 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/13 13:57:18 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:49:48 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	destroy(t_data *data)
 	i = 0;
 	while (i < data->philo_size)
 		pthread_mutex_destroy(&data->forks[i++]);
+	free(data->forks);
+	pthread_mutex_destroy(&data->died_mutex);
 	set_null(data);
 	return ;
 }

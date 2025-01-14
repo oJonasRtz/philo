@@ -6,14 +6,14 @@
 #    By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 10:43:40 by jopereir          #+#    #+#              #
-#    Updated: 2025/01/13 11:46:30 by jopereir         ###   ########.fr        #
+#    Updated: 2025/01/14 11:16:43 by jopereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRC_DIR = src
-SRCS = init.c events.c philosophers.c
+SRCS = 3.init.c 2.events.c 4.philosophers.c 5.utils.c
 	
 SRC = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJ = $(SRC:.c=.o)
@@ -30,7 +30,7 @@ $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(NAME): $(OBJ)
 	@echo "Compiling $(NAME)"
-	@$(CC) $(CFLAGS) $(SRC_DIR)/main.c $(OBJ) -pthread -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRC_DIR)/1.main.c $(OBJ) -pthread -o $(NAME)
 
 leak: $(NAME)
 	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 2>&1 | \

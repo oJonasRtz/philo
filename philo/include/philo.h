@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/13 16:30:19 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:37:55 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,23 @@ typedef struct s_philo
 {
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*died;
+
+	int				*died_flag;
 
 	int				index;
 	int				id;
 	int				philo_size;
 	pthread_t		t;
 
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
 	long			meals_to_eat;
 	long			meals_eaten;
+
 	long			timestamp;
+	long			current_time;
 	struct timeval	time;
 }	t_philo;
 
@@ -45,6 +50,9 @@ typedef struct s_data
 
 	t_philo			*philo;
 	long			philo_size;
+
+	int				died_flag;
+	pthread_mutex_t	died_mutex;
 }	t_data;
 
 //	events.c
@@ -57,5 +65,10 @@ void	philo_init(int argc, char **argv, t_data *data);
 
 //	philosophers.c
 void	*rotine(void *arg);
+long	get_time_ms(t_philo *philo);
+
+//	utils.c
+void	get_forks_and_eat(t_philo *philo);
+void	case_one_philo(t_philo *philo);
 
 #endif
