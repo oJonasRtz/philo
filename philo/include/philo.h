@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 11:53:49 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:08:21 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,9 @@ int		validation(char **argv);
 //	philosophers_utils.c
 int		ate_all_meals(t_philo *philo);
 void	die(t_philo *philo);
+
+//	monitor.c
+void	create_monitor(t_data *data);
+void	*monitor(void *arg);
 
 #endif

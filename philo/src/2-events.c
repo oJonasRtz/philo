@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:17 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 11:27:56 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:13:27 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	execute(t_data *data)
 			return ;
 		i++;
 	}
+	//create_monitor(data);
 	i = 0;
 	while (i < data->philo_size)
 		if (pthread_join(data->philo[i++].t, NULL))

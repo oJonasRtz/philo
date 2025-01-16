@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:34:40 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 12:00:25 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:23:08 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,35 @@ long	get_time(t_philo *philo)
 
 static void	try_to_sleep(t_philo *philo)
 {
-	if (ate_all_meals(philo) || *philo->died_flag)
+	if (ate_all_meals(philo) || died(philo))
 		return ;
+	pthread_mutex_lock(philo->died);
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is sleeping\n", philo->current_time / 1000, philo->id);
+	pthread_mutex_unlock(philo->died);
 	usleep(philo->time_to_sleep);
 }
 
 static void	try_to_get_forks(t_philo *philo)
 {
-	if (ate_all_meals(philo) || *philo->died_flag)
+	if (ate_all_meals(philo) || died(philo))
 		return ;
+	pthread_mutex_lock(philo->died);
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is thinking\n", philo->current_time / 1000, philo->id);
+	pthread_mutex_unlock(philo->died);
 	get_forks_and_eat(philo);
 	try_to_sleep(philo);
 }
 
 int	died(t_philo *philo)
 {
-	if (*philo->died_flag)
-		return (1);
 	pthread_mutex_lock(philo->died);
+	if (*philo->died_flag)
+	{
+		pthread_mutex_unlock(philo->died);
+		return (1);
+	}
 	philo->current_time = get_time(philo) - philo->timestamp;
 	if (philo->last_meal == 0)
 	{
