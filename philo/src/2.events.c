@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:17 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/14 12:23:30 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:32:48 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	create(int argc, char **argv)
 	t_data	data;
 
 	set_null(&data);
+	if (validation(argv))
+		return ;
 	philo_init(argc, argv, &data);
 	if (!data.philo)
 		return (destroy (&data));

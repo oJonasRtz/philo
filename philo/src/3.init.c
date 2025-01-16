@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:03 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/14 13:18:24 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:17:27 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void	set_philo(int argc, char **argv, t_data *data)
 		data->philo[i].timestamp = 0;
 		data->philo[i].index = i;
 		data->philo[i].id = i + 1;
-		data->philo[i].time_to_die = ft_atoi(argv[2]);
-		data->philo[i].time_to_eat = ft_atoi(argv[3]);
-		data->philo[i].time_to_sleep = ft_atoi(argv[4]);
+		data->philo[i].time_to_die = ft_atoi(argv[2]) * 1000;
+		data->philo[i].time_to_eat = ft_atoi(argv[3]) * 1000;
+		data->philo[i].time_to_sleep = ft_atoi(argv[4]) * 1000;
 		if (argc == 6)
 			data->philo[i].meals_to_eat = ft_atoi(argv[5]);
 		else

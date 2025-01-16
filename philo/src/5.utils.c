@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:15:55 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/14 15:40:45 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:17:50 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	try_to_eat(t_philo *philo)
 		return ;
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is eating\n", philo->current_time / 1000, philo->id);
-	usleep(philo->time_to_eat * 1000);
+	usleep(philo->time_to_eat);
 	philo->meals_eaten++;
 	philo->last_meal = philo->current_time;
 	pthread_mutex_unlock(philo->left_fork);
@@ -90,7 +90,7 @@ void	case_one_philo(t_philo *philo)
 {
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is thinking\n", philo->current_time / 1000, philo->id);
-	usleep((philo->time_to_die - philo->current_time) * 1000);
+	usleep((philo->time_to_die - philo->current_time));
 	pthread_mutex_lock(philo->died);
 	*philo->died_flag = 1;
 	pthread_mutex_unlock(philo->died);

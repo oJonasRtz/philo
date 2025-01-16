@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:34:40 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/14 15:32:44 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:17:35 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	try_to_sleep(t_philo *philo)
 		return ;
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is sleeping\n", philo->current_time / 1000, philo->id);
-	usleep(philo->time_to_sleep * 1000);
+	usleep(philo->time_to_sleep);
 }
 
 static void	try_to_get_forks(t_philo *philo)
