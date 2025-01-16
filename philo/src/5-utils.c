@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   5.utils.c                                          :+:      :+:    :+:   */
+/*   5-utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:15:55 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 10:17:50 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:59:28 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// static int	is_dead(t_philo *philo)
-// {
-// 	if (*philo->died_flag)
-// 	{
-// 	}
-// 	return (0);
-// }
-
-// int	time_to_do(long activity, long current_time, long time_to_die)
-// {
-// 	long	output;
-
-// 	output = (activity - (time_to_die - current_time)) * 1000;
-// 	if (output < 0)
-// 		return (0);
-// 	return (output);
-// }
 
 static void	unlock_forks(t_philo *philo, int flag)
 {

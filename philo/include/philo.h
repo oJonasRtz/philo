@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 10:31:26 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:53:49 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,9 @@ int		time_to_do(long activity, long current_time, long time_to_die);
 
 //	validation.c
 int		validation(char **argv);
+
+//	philosophers_utils.c
+int		ate_all_meals(t_philo *philo);
+void	die(t_philo *philo);
 
 #endif

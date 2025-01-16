@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3.init.c                                           :+:      :+:    :+:   */
+/*   3-init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:03 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 10:17:27 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:50:09 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ static void	set_philo(int argc, char **argv, t_data *data)
 		data->philo[i].time_to_die = ft_atoi(argv[2]) * 1000;
 		data->philo[i].time_to_eat = ft_atoi(argv[3]) * 1000;
 		data->philo[i].time_to_sleep = ft_atoi(argv[4]) * 1000;
+		data->philo[i].timestamp = get_time(&data->philo[i]);
+		data->philo[i].current_time = 0;
 		if (argc == 6)
-			data->philo[i].meals_to_eat = ft_atoi(argv[5]);
+			data->philo[i++].meals_to_eat = ft_atoi(argv[5]);
 		else
 			data->philo[i++].meals_to_eat = -1;
 	}
