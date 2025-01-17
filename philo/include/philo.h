@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/17 11:08:11 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:19:33 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		validation(char **argv);
 int		ate_all_meals(t_philo *philo);
 void	die(t_philo *philo);
 void	print_message(char *message, t_philo *philo);
-void	precise_sleep(t_philo *philo, long time_to_sleep);
+int		precise_sleep(t_philo *philo, long time_to_sleep);
 
 //	monitor.c
 void	create_monitor(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:34:40 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/17 11:08:33 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:21:22 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,20 @@ int	died(t_philo *philo)
 		pthread_mutex_unlock(philo->died);
 		return (1);
 	}
-	philo->current_time = get_time(philo) - philo->timestamp;
+	pthread_mutex_unlock(philo->died);
 	if (philo->last_meal == 0)
 	{
-		if (philo->current_time > philo->time_to_die)
+		if (get_time(philo) - philo->timestamp >= philo->time_to_die)
 		{
 			die(philo);
-			pthread_mutex_unlock(philo->died);
 			return (1);
 		}
 	}
-	else if (philo->current_time - philo->last_meal >= philo->time_to_die)
+	else if (get_time(philo) - philo->last_meal >= philo->time_to_die)
 	{
 		die(philo);
-		pthread_mutex_unlock(philo->died);
 		return (1);
 	}
-	pthread_mutex_unlock(philo->died);
 	return (0);
 }
 

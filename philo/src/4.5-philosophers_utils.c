@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:08:38 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/17 11:08:00 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:19:25 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int	ate_all_meals(t_philo *philo)
 void	die(t_philo *philo)
 {
 	print_message("died", philo);
+	pthread_mutex_lock(philo->died);
 	*philo->died_flag = 1;
+	pthread_mutex_unlock(philo->died);
 }
 
 void	print_message(char *message, t_philo *philo)
@@ -31,7 +33,7 @@ void	print_message(char *message, t_philo *philo)
 	pthread_mutex_unlock(philo->print_mutex);
 }
 
-void	precise_sleep(t_philo *philo, long time_to_sleep)
+int	precise_sleep(t_philo *philo, long time_to_sleep)
 {
 	long	start;
 
@@ -39,7 +41,8 @@ void	precise_sleep(t_philo *philo, long time_to_sleep)
 	while ((get_time(philo) - start) < time_to_sleep)
 	{
 		if (died(philo))
-			break ;
+			return (1);
 		usleep(100);
 	}
+	return (0);
 }

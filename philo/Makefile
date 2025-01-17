@@ -6,7 +6,7 @@
 #    By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 10:43:40 by jopereir          #+#    #+#              #
-#    Updated: 2025/01/16 15:13:17 by jopereir         ###   ########.fr        #
+#    Updated: 2025/01/17 12:24:33 by jopereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ = $(SRC:.c=.o)
 HEADER = include
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I$(HEADER) -g
+CFLAGS = -Wall -Werror -Wextra -I$(HEADER) -g -fsanitize=thread
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:15:55 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/17 11:09:06 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:20:24 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ static void	try_to_eat(t_philo *philo)
 {
 	if (died(philo))
 		return ;
-	print_message("is eating", philo);
-	precise_sleep(philo, philo->time_to_eat);
 	philo->meals_eaten++;
-	philo->last_meal = philo->current_time;
+	philo->last_meal = get_time(philo);
+	print_message("is eating", philo);
+	if (precise_sleep(philo, philo->time_to_eat))
+		return (unlock_forks(philo, 0));
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
