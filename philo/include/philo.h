@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:22:04 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 15:08:21 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:08:11 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*died;
+	pthread_mutex_t	*print_mutex;
 
 	int				*died_flag;
 
@@ -54,6 +55,7 @@ typedef struct s_data
 
 	int				died_flag;
 	pthread_mutex_t	died_mutex;
+	pthread_mutex_t	print_mutex;
 }	t_data;
 
 //	events.c
@@ -79,6 +81,8 @@ int		validation(char **argv);
 //	philosophers_utils.c
 int		ate_all_meals(t_philo *philo);
 void	die(t_philo *philo);
+void	print_message(char *message, t_philo *philo);
+void	precise_sleep(t_philo *philo, long time_to_sleep);
 
 //	monitor.c
 void	create_monitor(t_data *data);

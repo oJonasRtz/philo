@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:17 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 15:13:27 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:41:53 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	execute(t_data *data)
 			return ;
 		i++;
 	}
-	//create_monitor(data);
 	i = 0;
 	while (i < data->philo_size)
 		if (pthread_join(data->philo[i++].t, NULL))
@@ -64,6 +63,7 @@ void	destroy(t_data *data)
 		pthread_mutex_destroy(&data->forks[i++]);
 	free(data->forks);
 	pthread_mutex_destroy(&data->died_mutex);
+	pthread_mutex_destroy(&data->print_mutex);
 	set_null(data);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:03 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/16 11:50:09 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:46:54 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static void	set_philo(int argc, char **argv, t_data *data)
 	while (i < data->philo_size)
 	{
 		data->philo[i].last_meal = 0;
+		data->philo[i].print_mutex = &data->print_mutex;
 		data->philo[i].died_flag = &data->died_flag;
 		data->philo[i].died = &data->died_mutex;
 		data->philo[i].left_fork = &data->forks[i % data->philo_size];
 		data->philo[i].right_fork = &data->forks[(i + 1) % data->philo_size];
 		data->philo[i].philo_size = data->philo_size;
 		data->philo[i].meals_eaten = 0;
-		data->philo[i].timestamp = 0;
 		data->philo[i].index = i;
 		data->philo[i].id = i + 1;
 		data->philo[i].time_to_die = ft_atoi(argv[2]) * 1000;
@@ -74,6 +74,7 @@ void	philo_init(int argc, char **argv, t_data *data)
 	while (i < data->philo_size)
 		pthread_mutex_init(&data->forks[i++], NULL);
 	pthread_mutex_init(&data->died_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
 	data->died_flag = 0;
 	set_philo(argc, argv, data);
 }
