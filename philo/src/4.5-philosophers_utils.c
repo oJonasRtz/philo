@@ -6,7 +6,7 @@
 /*   By: jopereir <jopereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:08:38 by jopereir          #+#    #+#             */
-/*   Updated: 2025/01/17 13:19:25 by jopereir         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:43:39 by jopereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	precise_sleep(t_philo *philo, long time_to_sleep)
 	{
 		if (died(philo))
 			return (1);
-		usleep(100);
+		usleep(time_to_sleep / 10000);
 	}
 	return (0);
 }
