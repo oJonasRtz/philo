@@ -42,7 +42,7 @@ int	precise_sleep(t_philo *philo, long time_to_sleep)
 	{
 		if (died(philo))
 			return (1);
-		usleep(time_to_sleep / 10000);
+		usleep(100);
 	}
 	return (0);
 }

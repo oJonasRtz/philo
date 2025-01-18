@@ -31,6 +31,7 @@ static void	try_to_get_forks(t_philo *philo)
 	if (ate_all_meals(philo) || died(philo))
 		return ;
 	print_message("is thinking", philo);
+	precise_sleep(philo, 200);
 	get_forks_and_eat(philo);
 	try_to_sleep(philo);
 }
