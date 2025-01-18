@@ -70,14 +70,9 @@ void	get_forks_and_eat(t_philo *philo)
 
 void	case_one_philo(t_philo *philo)
 {
-	pthread_mutex_lock(philo->died);
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is thinking\n", philo->current_time / 1000, philo->id);
 	usleep((philo->time_to_die - philo->current_time));
-	pthread_mutex_lock(philo->died);
-	*philo->died_flag = 1;
-	pthread_mutex_unlock(philo->died);
-	philo->current_time = get_time(philo) - philo->timestamp;
-	printf("%ld %d died\n", philo->current_time / 1000, philo->id);
-	pthread_mutex_unlock(philo->died);
+	if (died(philo))
+		return ;
 }
