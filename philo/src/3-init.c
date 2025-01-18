@@ -18,7 +18,7 @@ static int	is_space(char c)
 		|| c == '\r' || c == '\t' || c == '\v' || c == '-');
 }
 
-static long	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	long	num;
 	int		i;

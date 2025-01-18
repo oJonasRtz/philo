@@ -29,7 +29,7 @@ static void	unlock_forks(t_philo *philo, int flag)
 
 static void	get_forks(t_philo *philo)
 {
-	if (died(philo))
+	if (ate_all_meals(philo) || died(philo))
 		return ;
 	if (philo->index == philo->philo_size - 1)
 		pthread_mutex_lock(philo->right_fork);
@@ -49,7 +49,7 @@ static void	get_forks(t_philo *philo)
 
 static void	try_to_eat(t_philo *philo)
 {
-	if (died(philo))
+	if (ate_all_meals(philo) || died(philo))
 		return ;
 	philo->meals_eaten++;
 	philo->last_meal = get_time(philo);
@@ -72,7 +72,6 @@ void	case_one_philo(t_philo *philo)
 {
 	philo->current_time = get_time(philo) - philo->timestamp;
 	printf("%ld %d is thinking\n", philo->current_time / 1000, philo->id);
-	usleep((philo->time_to_die - philo->current_time));
-	if (died(philo))
+	if (precise_sleep(philo, philo->time_to_die - philo->current_time))
 		return ;
 }

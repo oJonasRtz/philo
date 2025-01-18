@@ -65,6 +65,7 @@ void	destroy(t_data *data);
 
 //	init.c
 void	philo_init(int argc, char **argv, t_data *data);
+long	ft_atoi(char *str);
 
 //	philosophers.c
 void	*rotine(void *arg);

@@ -20,8 +20,8 @@ OBJ = $(SRC:.c=.o)
 HEADER = include
 
 CC = gcc
+# -fsanitize=thread
 CFLAGS = -Wall -Werror -Wextra -I$(HEADER) -g 
-
 all: $(NAME)
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c

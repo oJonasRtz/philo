@@ -48,9 +48,20 @@ static int	isnegative(char **str)
 	return (0);
 }
 
+static int	iszero(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+		if (ft_atoi(argv[i++]) == 0)
+			return (1);
+	return (0);
+}
+
 int	validation(char **argv)
 {
-	if (isnegative(&argv[1]) || isallnumber(&argv[1]))
+	if (isnegative(&argv[1]) || isallnumber(&argv[1]) || iszero(&argv[1]))
 		return (1);
 	return (0);
 }
