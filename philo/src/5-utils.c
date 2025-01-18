@@ -16,7 +16,7 @@ static void	unlock_forks(t_philo *philo, int flag)
 {
 	if (flag)
 	{
-		if (philo->index == philo->philo_size - 1)
+		if (philo->index % 2 == 0)
 			pthread_mutex_unlock(philo->right_fork);
 		else
 			pthread_mutex_unlock(philo->left_fork);
@@ -29,16 +29,14 @@ static void	unlock_forks(t_philo *philo, int flag)
 
 static void	get_forks(t_philo *philo)
 {
-	if (ate_all_meals(philo) || died(philo))
-		return ;
-	if (philo->index == philo->philo_size - 1)
+	if (philo->index % 2 == 0)
 		pthread_mutex_lock(philo->right_fork);
 	else
 		pthread_mutex_lock(philo->left_fork);
 	if (died(philo))
 		return (unlock_forks(philo, 1));
 	print_message("has taken a fork", philo);
-	if (philo->index == philo->philo_size - 1)
+	if (philo->index % 2 == 0)
 		pthread_mutex_lock(philo->left_fork);
 	else
 		pthread_mutex_lock(philo->right_fork);
@@ -49,7 +47,7 @@ static void	get_forks(t_philo *philo)
 
 static void	try_to_eat(t_philo *philo)
 {
-	if (ate_all_meals(philo) || died(philo))
+	if (died(philo))
 		return ;
 	philo->meals_eaten++;
 	philo->last_meal = get_time(philo);

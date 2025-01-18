@@ -20,7 +20,8 @@ long	get_time(t_philo *philo)
 
 static void	try_to_sleep(t_philo *philo)
 {
-	if (ate_all_meals(philo) || died(philo))
+	precise_sleep(philo, 1000);
+	if (died(philo))
 		return ;
 	print_message("is sleeping", philo);
 	precise_sleep(philo, philo->time_to_sleep);
@@ -28,9 +29,8 @@ static void	try_to_sleep(t_philo *philo)
 
 static void	try_to_get_forks(t_philo *philo)
 {
-	if (ate_all_meals(philo) || died(philo))
-		return ;
-	print_message("is thinking", philo);
+	if (!died(philo))
+		print_message("is thinking", philo);
 	if(precise_sleep(philo, 1000))
 		return ;
 	get_forks_and_eat(philo);

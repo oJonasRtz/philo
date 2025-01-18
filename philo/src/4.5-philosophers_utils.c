@@ -19,16 +19,19 @@ int	ate_all_meals(t_philo *philo)
 
 void	die(t_philo *philo)
 {
-	print_message("died", philo);
 	pthread_mutex_lock(philo->died);
-	*philo->died_flag = 1;
+	if (*philo->died_flag == 0)
+	{
+		*philo->died_flag = 1;
+		print_message("died", philo);
+	}
 	pthread_mutex_unlock(philo->died);
 }
 
 void	print_message(char *message, t_philo *philo)
 {
-	pthread_mutex_lock(philo->print_mutex);
 	philo->current_time = get_time(philo) - philo->timestamp;
+	pthread_mutex_lock(philo->print_mutex);
 	printf("%ld %d %s\n", philo->current_time / 1000, philo->id, message);
 	pthread_mutex_unlock(philo->print_mutex);
 }
