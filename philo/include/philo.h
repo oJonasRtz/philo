@@ -85,8 +85,7 @@ void	die(t_philo *philo);
 void	print_message(char *message, t_philo *philo);
 int		precise_sleep(t_philo *philo, long time_to_sleep);
 
-//	monitor.c
-void	create_monitor(t_data *data);
-void	*monitor(void *arg);
+//	get_forks
+int		get_forks(t_philo *philo);
 
 #endif

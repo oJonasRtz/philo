@@ -14,7 +14,7 @@ NAME = philo
 
 SRC_DIR = src
 SRCS = 3-init.c 2-events.c 4-philosophers.c 5-utils.c 6-validation.c 4.5-philosophers_utils.c \
-	
+		7-get_forks.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJ = $(SRC:.c=.o)
 HEADER = include

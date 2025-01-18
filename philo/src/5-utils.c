@@ -12,39 +12,6 @@
 
 #include "philo.h"
 
-static void	unlock_forks(t_philo *philo, int flag)
-{
-	if (flag)
-	{
-		if (philo->index % 2 == 0)
-			pthread_mutex_unlock(philo->right_fork);
-		else
-			pthread_mutex_unlock(philo->left_fork);
-		return ;
-	}
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
-	return ;
-}
-
-static void	get_forks(t_philo *philo)
-{
-	if (philo->index % 2 == 0)
-		pthread_mutex_lock(philo->right_fork);
-	else
-		pthread_mutex_lock(philo->left_fork);
-	if (died(philo))
-		return (unlock_forks(philo, 1));
-	print_message("has taken a fork", philo);
-	if (philo->index % 2 == 0)
-		pthread_mutex_lock(philo->left_fork);
-	else
-		pthread_mutex_lock(philo->right_fork);
-	if (died(philo))
-		return (unlock_forks(philo, 0));
-	print_message("has taken a fork", philo);
-}
-
 static void	try_to_eat(t_philo *philo)
 {
 	if (died(philo))
@@ -52,17 +19,15 @@ static void	try_to_eat(t_philo *philo)
 	philo->meals_eaten++;
 	philo->last_meal = get_time(philo);
 	print_message("is eating", philo);
-	if (precise_sleep(philo, philo->time_to_eat))
-		return (unlock_forks(philo, 0));
+	precise_sleep(philo, philo->time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
 
 void	get_forks_and_eat(t_philo *philo)
 {
-	if (ate_all_meals(philo) || died(philo))
+	if (ate_all_meals(philo) || died(philo) || get_forks(philo))
 		return ;
-	get_forks(philo);
 	try_to_eat(philo);
 }
 
