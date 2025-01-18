@@ -21,7 +21,7 @@ long	get_time(t_philo *philo)
 static void	try_to_sleep(t_philo *philo)
 {
 	precise_sleep(philo, 1000);
-	if (died(philo))
+	if (ate_all_meals(philo) || died(philo))
 		return ;
 	print_message("is sleeping", philo);
 	precise_sleep(philo, philo->time_to_sleep);
